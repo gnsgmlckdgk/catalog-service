@@ -24,15 +24,29 @@ configurations {	// 프로젝트를 빌드할 때 그래들이 설정 프로세�
 	}
 }
 
+ext {
+	set('springCloudVersion', "2023.0.2")
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'	// 유효성검증
+	testImplementation 'org.springframework.boot:spring-boot-starter-webflux'	// 웹플럭스
 
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'	// 스프링 설정
+
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'	// 스프링 클라우드
+	implementation 'org.springframework.retry:spring-retry'					// 스프링 리트라이
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'	// 스프링 엑츄에이터
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
 
 bootRun {	// bootRun 명령어 실행 할 시
