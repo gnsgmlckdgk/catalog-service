@@ -1,6 +1,7 @@
 spring:
   application:
     name: catalog-service # 설정 서버에서 설정을 필터링하는 데 사용하는 애플리케이션의 이름
+  # 컨피스 서버 설정 ------------------------------------------------------------------------------
   config:
     import: "optional:configserver:"  # 가능하면 컨피그 서버에서 설정 데이터를 가져온다.
   cloud:
@@ -14,7 +15,21 @@ spring:
         initial-interval: 1000  # 최초 재시도 지연시간(밀리초)
         max-interval: 2000  # 재시도 지연 최대 시간(밀리초)
         multiplier: 1.1 # 지연 시간 계산 승수
+  # DB 설정 -----------------------------------------------------------------------------------
+  datasource:
+    username: user
+    password: password
+    url: jdbc:postgresql://localhost:5432/polardb_catalog
+    # 연결 풀 설정 [데이터베이스를 엑세스 할때마다 연결을 새로 만드는 대신 이미 생성한 연결을 재사용한다.]
+    hikari:
+      connection-timeout: 2000  # 풀에서 연결 객체를 얻기 위해 기다려야 하는 최대 시간(밀리초)
+      maximum-pool-size: 5      # 하카리CP 풀에 최대한으로 유지할 수 있는 연결 객체의 수
+  # sql 스크립트에서 데이터베이스 스키마 초기화
+  sql:
+    init:
+      mode: always
 
+# 서버 설정 ------------------------------------------------------------------------------
 server:
   port: 9001
   tomcat:
@@ -24,11 +39,12 @@ server:
       max: 50
       min-spare: 5
 
+# 컨피그 서버 설정 ---------------------------------------------------------------------------
 management:
   endpoints:
     web:
       exposure:
-        include: refresh  # HTTP를 통해 /actuator/refresh 엔드포인트를 노출한다.
+        include: refresh  # HTTP를 통해 /actuator/refresh 엔드포인트를 노출한다.[컨피그 서버 설정 가져와 새로 적용]
 
 polar:
   greeting: Welcome to the local book catalog!  # 설정서버에도 정보가 있으면 설정서버 정보가 우선된다.

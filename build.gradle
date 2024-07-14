@@ -41,6 +41,10 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'	// 스프링 클라우드
 	implementation 'org.springframework.retry:spring-retry'					// 스프링 리트라이
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'	// 스프링 엑츄에이터
+
+	// DB
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'	// JDBC
+	runtimeOnly 'org.postgresql:postgresql'	// 특정 의존성이 컴파일 시점에는 필요 없고, 애플리케이션 실행 시점에만 필요하는것을 정의
 }
 
 dependencyManagement {
@@ -51,6 +55,7 @@ dependencyManagement {
 
 bootRun {	// bootRun 명령어 실행 할 시
 	//systemProperty 'spring.profiles.active', 'testdata,dev'	// testdata 프로파일 활성화[여러개 설정 가능]
+	systemProperty 'spring.profiles.active', 'testdata'
 }
 
 tasks.named('test') {
