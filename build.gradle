@@ -47,6 +47,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'	// JDBC
 	runtimeOnly 'org.postgresql:postgresql'	// 특정 의존성이 컴파일 시점에는 필요 없고, 애플리케이션 실행 시점에만 필요하는것을 정의
 	testImplementation 'org.testcontainers:postgresql'	// PostgreSQL 데이터베이스에 대한 컨테이너 관리 기능을 제공한다.
+//	implementation 'org.flywaydb:flyway-core'	// 포스크그리SQL 14.4 버전은 플라이웨이 최신버전에서 안됨
+	implementation 'org.flywaydb:flyway-core:9.16.3'
 }
 
 dependencyManagement {
