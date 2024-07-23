@@ -41,6 +41,9 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew build
+        env:
+          SPRING_PROFILES_ACTIVE: integration
+
   package:
     name: Package and Publish
     if: ${{ github.ref == 'refs/heads/main' }}
