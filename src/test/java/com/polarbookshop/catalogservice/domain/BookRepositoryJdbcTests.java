@@ -27,7 +27,7 @@ public class BookRepositoryJdbcTests {
     @Autowired
     private JdbcAggregateTemplate jdbcAggregateTemplate;    // 데이터베이스와 상호작용하기 위한 하위 수준의 객체
 
-    //@Test
+    @Test
     void findBookIsbnWhenExisting() {
         var bookIsbn = "1234567";
         var book = Book.of(bookIsbn, "Title", "Author", 12.90, "Polarsophia");

@@ -17,7 +17,7 @@ class CatalogServiceApplicationTests {
 	@Autowired	// 생성자 기반 의존성 주입이 권장되나 테스트 클래스에서는 이 방식이 허용된다.
 	private WebTestClient webTestClient;
 
-	//@Test
+	@Test
 	void whenPostRequestThenBookCreated() {
 		var expectedBook = Book.of("1231231231", "Title", "Author", 9.90, "Polarsophia");
 
