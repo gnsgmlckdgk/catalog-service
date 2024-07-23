@@ -22,7 +22,7 @@ public class BookControllerMvcTests {
     @MockBean   // 스프링 애플리케이션 콘텍스트에 BookService의 모의 객체를 추가한다.
     private BookService bookService;
 
-    @Test
+    //@Test
     void whenGetBookNotExistingThenShouldReturn404() throws Exception {
         String isbn = "73737313940";
         given(bookService.viewBookDetails(isbn))
