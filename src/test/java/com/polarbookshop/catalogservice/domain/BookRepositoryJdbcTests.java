@@ -8,6 +8,11 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jdbc.core.JdbcAggregateTemplate;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.Optional;
 
@@ -18,6 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureTestDatabase( // 테스트컨테이너를 이용해야 하기 때문에 내장 테스트 데이터베이스 사용을 비활성화한다.
         replace = AutoConfigureTestDatabase.Replace.NONE
 )
+@Testcontainers
 @ActiveProfiles("integration")  // application-integration.yml에서 설정을 로드하기 위해 integration 프로파일을 활성화한다.
 public class BookRepositoryJdbcTests {
 
@@ -26,6 +32,19 @@ public class BookRepositoryJdbcTests {
 
     @Autowired
     private JdbcAggregateTemplate jdbcAggregateTemplate;    // 데이터베이스와 상호작용하기 위한 하위 수준의 객체
+
+    @Container
+    static PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:14.4")
+            .withDatabaseName("testdb")
+            .withUsername("user")
+            .withPassword("password");
+
+    @DynamicPropertySource
+    static void registerPgProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", postgresContainer::getJdbcUrl);
+        registry.add("spring.datasource.username", postgresContainer::getUsername);
+        registry.add("spring.datasource.password", postgresContainer::getPassword);
+    }
 
     @Test
     void findBookIsbnWhenExisting() {

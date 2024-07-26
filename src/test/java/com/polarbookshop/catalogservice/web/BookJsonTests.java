@@ -28,7 +28,8 @@ public class BookJsonTests {
                 .isEqualTo(book.author());
         assertThat(jsonContent).extractingJsonPathNumberValue("@.price")
                 .isEqualTo(book.price());
-
+        assertThat(jsonContent).extractingJsonPathStringValue("@.publisher")
+                .isEqualTo(book.publisher());
     }
 
     // 역직렬화 테스트
@@ -40,7 +41,8 @@ public class BookJsonTests {
                     "isbn" : "1234567890",
                     "title" : "Title",
                     "author" : "Author",
-                    "price" : 9.90
+                    "price" : 9.90,
+                    "publisher" : "Polarsophia"
                 }
                 """;
         assertThat(json.parse(content)) // JSON에서 자바 객체로의 변환을 확인한다.
