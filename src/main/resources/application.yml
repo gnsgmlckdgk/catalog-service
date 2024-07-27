@@ -1,6 +1,8 @@
 spring:
   application:
     name: catalog-service # 설정 서버에서 설정을 필터링하는 데 사용하는 애플리케이션의 이름
+  profiles:
+    active: integration # CI 빌드 테스트 시 컨피그서버에서 테스트컨테이너 설정도 읽을 수 있게하기 위해 추가
   # 컨피스 서버 설정 ------------------------------------------------------------------------------
   config:
     import: "optional:configserver:"  # 가능하면 컨피그 서버에서 설정 데이터를 가져온다.
