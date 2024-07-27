@@ -47,7 +47,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh  # HTTP를 통해 /actuator/refresh 엔드포인트를 노출한다.[컨피그 서버 설정 가져와 새로 적용]
+        include: refresh  # HTTP를 통해 /actuator/refresh 엔드포인트를 노출한다.[ 컨피그 서버 설정 가져와 새로 적용 ]
 
 polar:
   greeting: Welcome to the local book catalog!  # 설정서버에도 정보가 있으면 설정서버 정보가 우선된다.
