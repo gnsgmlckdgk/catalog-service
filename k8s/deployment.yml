@@ -41,6 +41,6 @@ spec:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://polar-postgres/polardb_catalog
             # 'testdata' 스프링 프로파일 활성화
-            - name: SPRING_PROFLIE_ACTIVE
+            - name: SPRING_PROFILES_ACTIVE
               value: testdata
 
