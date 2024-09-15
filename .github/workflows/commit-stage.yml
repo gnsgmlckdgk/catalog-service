@@ -46,10 +46,10 @@ jobs:
       - name: Validate Kubernetes manifests
         uses: actions/checkout@v2  # 쿠버네티스를 위한 유용한 도구를 설치할 수 있는 액션
       - name: Install kubeconform
-          run: |
-            curl -LO https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz
-            tar -xzf kubeconform-linux-amd64.tar.gz
-            sudo mv kubeconform /usr/local/bin/
+        run: |
+          curl -LO https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz
+          tar -xzf kubeconform-linux-amd64.tar.gz
+          sudo mv kubeconform /usr/local/bin/
 
       - name: Validate manifests with kubeconform
         run: |
