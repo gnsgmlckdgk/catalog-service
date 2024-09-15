@@ -44,11 +44,16 @@ jobs:
 
       # 메니페스트 유효성 검사
       - name: Validate Kubernetes manifests
-        uses: stefanprodan/kube-tools@v1  # 쿠버네티스를 위한 유용한 도구를 설치할 수 있는 액션
-        with:
-          kubectl: 1.30.2 # 쿠버네티스 CLI 설치
-          command: |
-            kubectl apply --dry-run=client -f k8s
+        uses: actions/checkout@v2  # 쿠버네티스를 위한 유용한 도구를 설치할 수 있는 액션
+      - name: Install kubeconform
+          run: |
+            curl -LO https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz
+            tar -xzf kubeconform-linux-amd64.tar.gz
+            sudo mv kubeconform /usr/local/bin/
+
+      - name: Validate manifests with kubeconform
+        run: |
+          kubeconform k8s
 
   package:
     name: Package and Publish
