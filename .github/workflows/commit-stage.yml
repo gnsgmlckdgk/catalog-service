@@ -42,6 +42,14 @@ jobs:
           chmod +x gradlew
           ./gradlew build
 
+      # 메니페스트 유효성 검사
+      - name: Validate Kubernetes manifests
+        uses: stefanprodan/kube-tools@v1  # 쿠버네티스를 위한 유용한 도구를 설치할 수 있는 액션
+        with:
+          kubectl: 1.30.2 # 쿠버네티스 CLI 설치
+          command: |
+            kubectl apply --dry-run=client -f k8s
+
   package:
     name: Package and Publish
     if: ${{ github.ref == 'refs/heads/main' }}  # JOB을 main 브랜치에 대해서만 실행한다.
