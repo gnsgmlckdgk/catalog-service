@@ -50,6 +50,10 @@ dependencies {
 	testImplementation 'org.testcontainers:junit-jupiter'	// 테스트컨테이너 JUNIT 지원
 //	implementation 'org.flywaydb:flyway-core'	// 포스트그리SQL 14.4 버전은 플라이웨이 최신버전에서 안됨
 	implementation 'org.flywaydb:flyway-core:9.16.3'
+
+	// lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
 }
 
 dependencyManagement {
