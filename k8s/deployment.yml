@@ -53,4 +53,4 @@ spec:
               value: testdata
             # 컨피그 서비스 url를 지정하도록 설정 [80 -> 8888]
             - name: SPRING_CLOUD_CONFIG_URI
-              value: http://config-service
+              value: http://config-service:8888
