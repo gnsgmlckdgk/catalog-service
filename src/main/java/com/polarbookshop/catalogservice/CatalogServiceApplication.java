@@ -1,11 +1,12 @@
 package com.polarbookshop.catalogservice;
 
 import com.polarbookshop.catalogservice.config.PolarProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
-@Slf
+@Slf4j
 @SpringBootApplication
 @ConfigurationPropertiesScan	// 스프링 콘텍스트에 설정 데이터 빈을 로드한다.
 public class CatalogServiceApplication {
@@ -15,7 +16,7 @@ public class CatalogServiceApplication {
 
 		// Bean이 제대로 로드되었는지 확인
 		var properties = ctx.getBean(PolarProperties.class);
-		log.info("Main: ClientProperties loaded = {}", properties);
+		log.info("Main: PolarProperties loaded = {}", properties);
 	}
 
 }
