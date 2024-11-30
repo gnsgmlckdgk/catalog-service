@@ -47,7 +47,7 @@ spec:
               value: "50"
             # 이전에 배포된 PostgreSQL 파드를 가리키는 spring.datasource.url 속성의 값
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://polar-postgres/polardb_catalog
+              value: jdbc:postgresql://polar-postgres:5432/polardb_catalog
             # 'testdata' 스프링 프로파일 활성화
             - name: SPRING_PROFILES_ACTIVE
               value: testdata
