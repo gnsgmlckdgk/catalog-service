@@ -29,7 +29,7 @@ spec:
         - name: catalog-service
           # 컨테이너를 실행하기 위해 사용할 이미지. 태그가 정의되지 않으면 latest가 암묵적으로 사용된다.
           #image: catalog-service
-          image: ghcr.io/gnsgmlckdgk/order-service:latest
+          image: ghcr.io/gnsgmlckdgk/catalog-service:latest
           # 이미지가 로컬에 없는 경우에만 컨테이너 저장소에서 이미지를 다운로드 받을 것을 쿠버네티스에게 지시한다.
           imagePullPolicy: IfNotPresent
           # 쿠버네티스 파드에 SIGTERM 신호를 보내기 전에 5초를 기다리게 한다.
