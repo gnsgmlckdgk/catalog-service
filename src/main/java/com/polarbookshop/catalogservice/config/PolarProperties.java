@@ -1,7 +1,9 @@
 package com.polarbookshop.catalogservice.config;
 
+import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+@ToString
 @ConfigurationProperties(prefix = "polar")
 public class PolarProperties {
 
